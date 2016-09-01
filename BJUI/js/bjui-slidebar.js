@@ -257,7 +257,7 @@
         
         $box.empty()
         $array.each(function(i) {
-            var $t = $(this), panel, cls, bodycls, faicon = $t.data('faicon'), faiconClose = $t.data('faiconClose'), icon = faicon ? faicon : 'dot-circle-o'
+            var $t = $(this),s, panel, cls, bodycls, faicon = $t.data('faicon'), faiconClose = $t.data('faiconClose'), icon = faicon ? faicon : 'dot-circle-o'
             
             if ($t.data('tit')) title = $t.data('tit')
             
@@ -276,16 +276,18 @@
             $panel = $(panel)
             $panel.find('> .panel-collapse > .panel-body').append($t.removeAttr('data-noinit'))
             $box.append($panel)
-            LEFTNAVHTML=$panel.html()
+            LEFTNAVHTML=$box.html()
+            s=0
             if (!i) $panel.collapse('show')
         })
         
-        $('#bjui-sidebar').initui()
+        // $('#bjui-sidebar').initui()
         
         $li
             .addClass('active')
-            .data('bjui.slidebar.hnav.panels', $box.find('> .panel'))
+            .data('bjui.slidebar.hnav.panels', LEFTNAVHTML)
             .siblings().removeClass('active')
+            console.log($box.find('> .panel'));
     }
     
     // SLIDEBAR PLUGIN DEFINITION
@@ -329,17 +331,20 @@
     })
     
     $(document).on('click.bjui.slidebar.data-api', '[data-toggle="slidebar"]', function(e) {
-        var $li = $(this).parent(), $box = $('#bjui-accordionmenu'), $panels = $li.data('bjui.slidebar.hnav.panels')
+        var $li = $(this).parent(), s, $box = $('#bjui-accordionmenu'), $panels = $li.data('bjui.slidebar.hnav.panels')
         $box.find('> .panel').detach()
         if ($panels && $panels.length) {
             $box.append($panels)
-            $li.addClass('active').siblings().removeClass('active')
+            LEFTNAVHTML=$box.html()
+            s=1
+            // console.log(LEFTNAVHTML);
+            // $li.addClass('active').siblings().removeClass('active')
         } else {
             Plugin.call($(this), 'initHnav')
 
         }
      e.preventDefault()
-     golbalState.globalControlHtml=[{"controlid":"bjui-accordionmenu", "controlhtml":LEFTNAVHTML}];
+     golbalState.globalControlHtml=[{"controlid":"bjui-accordionmenu", "controlhtml":LEFTNAVHTML,"controlPid":s}];
      History.pushState(golbalState, '', golbalState.navUrl + "&rnd=" + guid());
      
      

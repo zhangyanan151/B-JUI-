@@ -264,7 +264,7 @@ $(function(){
                             </ul>
                         </div>
                     </li>
-                    <li><a href="javascript:;" data-toggle="slidebar"><i class="fa fa-table"></i> Datagrid(beta)</a>
+                    <li><a href="index_tree.html?app=aa" data-toggle="slidebar"><i class="fa fa-table"></i> Datagrid(beta)</a>
                         <div class="items hide" data-noinit="true">
                             <ul id="bjui-hnav-tree-datagrid" class="ztree ztree_main" data-toggle="ztree" data-on-click="MainMenuClick" data-expand-all="true" data-faicon="table">
                                 <li data-id="3" data-pid="0" data-faicon="folder-open-o" data-faicon-close="folder-o">datagrid (beta)</li>
@@ -488,7 +488,7 @@ $(function(){
         //修改控件的html
         if (golbalState.globalControlHtml) {
           for (var i = 0; i < golbalState.globalControlHtml.length; i++) {
-            $("#" + golbalState.globalControlHtml[i].controlid).empty().html(golbalState.globalControlHtml[i].controlhtml);
+            $("#" + golbalState.globalControlHtml[i].controlid).html(golbalState.globalControlHtml[i].controlhtml);
             $('#bjui-sidebar').initui()
           }
         }
